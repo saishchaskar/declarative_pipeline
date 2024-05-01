@@ -1,0 +1,26 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+
+            steps {
+
+                git branch: 'master', url: 'https://github.com/saishchaskar/declarative_pipeline.git'
+
+            }
+
+        }
+
+        stage ('Deploy'){
+        steps {
+            echo 'Deploying...'
+            bat "xcopy /Y /I /E /F /C *.html C:\\xampp\\htdocs\\"
+        }
+    }
+
+        }
+
+    }
