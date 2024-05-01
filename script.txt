@@ -1,35 +1,33 @@
 pipeline {
-
     agent any
-
-    stages {
-
-        stage('Checkout') {
-
-            steps {
-
-                git branch: 'master', url: 'https://github.com/saishchaskar/declarative_pipeline.git'
-
-            }
-
+    
+    stages{
+     stage('checkout') {
+        steps{
+            git branch: 'main', url:'https://github.com/saishchaskar/declarative_pipeline.git'
         }
-
-        stage('Deploy') {
+    }
+    stage('Build'){
+        steps{
+            echo 'Building....'
+            // include any build steps here 
+        }
+    }
+    stage('Deploy') {
 
             steps {
 
                 bat '''
 
-                    mkdir "C:/xampp/htdocs/test"
+                    mkdir "C:\\xampp\\htdocs\\test"
 
-                    copy *.html "C:/xampp/htdocs/test"
+                    copy *.html "C:\\xampp\\htdocs\\test"
 
                 '''
 
             }
 
         }
-
-    }
-
+  }
 }
+
